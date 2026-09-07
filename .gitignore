@@ -1,0 +1,16 @@
+# 생성물 — build-dashboard.py 가 다시 만든다
+dashboard.html
+
+# 개인 자료 (이력서·포트폴리오 원본·증빙)
+me/assets/*
+!me/assets/index.md
+
+# 에디터 / OS
+.obsidian/
+.DS_Store
+Thumbs.db
+*.swp
+
+# Python
+__pycache__/
+*.py[cod]
