@@ -72,7 +72,9 @@ updated: { by: claude, at: 2026-11-07T07:03:56Z }
 │       └── optional/         #   필요할 때만: 경력기술서·설명회·면접관별 질문·면접 복기
 │
 └── library/                  # ③ 회사를 가로지르는 자산
-    ├── question-bank.md      # 실제로 받은 면접 질문
+    ├── cover-letter-rules.md # 자소서 작성 규칙
+    ├── portfolio-rules.md    # 포트폴리오 작성 규칙
+    ├── question-bank.md      # 실제로 받은 면접 질문 · 문항 유형별 공략법
     ├── assessments/          # 필기·과제 틀린 유형 누적
     └── retrospectives/       # 지원 회고 → me/로 반영
 ```

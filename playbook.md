@@ -91,6 +91,7 @@ applications/_template/ → applications/YYYY-MM-회사명-직무/
 * 사용자가 자소서용으로 직접 쓴 문장은 톤을 유지하고 구조와 근거만 손본다. 대화에서 편하게 한 설명은 근거로 삼고, 자소서 문장으로 다듬어 옮긴다.
 * 한 문서는 한 역할만 담당한다. JD 원문은 `jd.md`, 해석과 배치는 `strategy.md`에 둔다.
 * 공고를 읽었다는 사실을 자소서에 쓰지 않는다. 공고 내용은 회사가 하는 일로 서술한다.
+* 자소서는 짝 검증 → 흐름 → 압축 → 윤문 순으로 작업한다. 세부 기준은 `/library/cover-letter-rules.md`, 포트폴리오는 `/library/portfolio-rules.md`.
 
 # 7. 피드백 원칙
 
