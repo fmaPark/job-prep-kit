@@ -3,6 +3,7 @@ type: Guide
 title: 폴더 구조와 설계 배경
 description: 왜 이렇게 나눴는가, 각 폴더와 파일의 역할, 문서 규격(OKF)과 링크 규칙.
 generated: { by: claude-code/claude-fable-5-1, at: 2026-09-08T00:30:00Z }
+updated: { by: claude, at: 2026-11-07T07:03:56Z }
 ---
 
 # 폴더 구조와 설계 배경
@@ -43,7 +44,8 @@ generated: { by: claude-code/claude-fable-5-1, at: 2026-09-08T00:30:00Z }
 ├── log.md                    # 변경 이력
 ├── CLAUDE.md                 # AI 작업 규칙 — 시스템 인스트럭션
 ├── playbook.md               # 단계별 워크플로우
-├── build-dashboard.py        # 대시보드 생성기
+├── build-dashboard.py        # 대시보드 생성기 (+ applications/index.md 보드 갱신)
+├── check-repo.py             # 프론트매터 type 점검 (읽기 전용)
 ├── docs/                     # 이 안내 문서들
 │
 ├── me/                       # ① 사실의 단일 출처
@@ -56,16 +58,18 @@ generated: { by: claude-code/claude-fable-5-1, at: 2026-09-08T00:30:00Z }
 │   └── assets/               # 이력서·포폴 원본 (.gitignore 처리됨)
 │
 ├── applications/             # ② 지원 현황 — 폴더 하나 = 지원 건 하나
-│   ├── index.md              # 파이프라인 보드
+│   ├── index.md              # 파이프라인 보드 (AUTO 블록은 빌더가 씀)
 │   └── _template/            # 회사 폴더 템플릿 (통째로 복사해서 사용)
 │       ├── meta.md           #   상태 메타데이터 — 대시보드가 읽는 파일
 │       ├── jd.md             #   공고 원문 (요약 금지)
 │       ├── research.md       #   회사·제품·조직 조사
 │       ├── strategy.md       #   공고 ↔ 경험 매핑표  ← 여기가 핵심
 │       ├── cover-letter.md   #   자기소개서 (+ drafts/ 버전 이력)
-│       ├── interview.md      #   예상 질문·꼬리질문
+│       ├── application-form.md # 지원서 칸별 입력값·제출 확정값
+│       ├── interview.md      #   면접 대본·예상 질문·꼬리질문
 │       ├── assessment.md     #   필기·과제(코테·인적성·과제) 대비
-│       └── log.md
+│       ├── log.md
+│       └── optional/         #   필요할 때만: 경력기술서·설명회·면접관별 질문·면접 복기
 │
 └── library/                  # ③ 회사를 가로지르는 자산
     ├── question-bank.md      # 실제로 받은 면접 질문
@@ -87,7 +91,7 @@ generated: { by: claude-code/claude-fable-5-1, at: 2026-09-08T00:30:00Z }
 ## 직군과 전형 종류
 
 템플릿은 특정 직군을 가정하지 않습니다. `meta.md`의 `track`은 자유 텍스트(개발, PM, 디자인, 마케팅, 데이터, 영업, 사무 …)이고, 필기·과제 전형은 코딩테스트 · 인적성 · 과제 · PT · 어학을 모두 같은 자리에서 다룹니다.
-지원 단계는 대시보드가 필터로 쓰기 때문에 6개 큰 범주로 고정되어 있고, 2차 면접이나 인턴 전환처럼 세부 단계는 `stage_note`에 적습니다.
+지원 단계는 대시보드가 필터로 쓰기 때문에 6개 진행 단계와 3개 종료 단계(합격 · 불합격 · 지원안함)로 고정되어 있고, 2차 면접이나 인턴 전환처럼 세부 단계는 `stage_note`에 적습니다.
 
 ## 문서 규격 (OKF 0.2)
 
@@ -95,6 +99,7 @@ generated: { by: claude-code/claude-fable-5-1, at: 2026-09-08T00:30:00Z }
 규격을 몰라도 쓰는 데 지장은 없습니다. 실제로 지켜야 할 것은 아래뿐입니다.
 
 - `index.md`와 `log.md`를 제외한 모든 마크다운 문서는 맨 위에 `---`로 감싼 프론트매터를 두고, 거기에 `type`을 적습니다 (`Experience`, `Strategy`, `Cover Letter`, `Application` …). 템플릿에 이미 들어 있으니 복사해서 쓰면 됩니다.
+  빠진 문서는 `python3 check-repo.py`로 찾을 수 있습니다(읽기 전용, 고치지 않음). `README.md`도 예외입니다.
 - 대시보드가 실제로 읽는 필드는 셋입니다.
   - `stale_after` — 회사 리서치처럼 시의성 있는 문서의 재조사 신호
   - `status: draft` — 아직 못 채운 문서. 대시보드가 세어서 보여줍니다
