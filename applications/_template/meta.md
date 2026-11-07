@@ -12,7 +12,7 @@ applied_at:
 next_action:
 url:
 status: draft
-generated: { by: cowork/claude-opus-5, at: 2026-09-07T00:00:00Z }
+generated: { by: "<human|claude|codex>", at: "<ISO8601>" }
 ---
 
 # 메모
