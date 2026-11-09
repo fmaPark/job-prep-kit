@@ -3,7 +3,7 @@ type: Guide
 title: 폴더 구조와 설계 배경
 description: 왜 이렇게 나눴는가, 각 폴더와 파일의 역할, 문서 규격(OKF)과 링크 규칙.
 generated: { by: claude-code/claude-fable-5-1, at: 2026-09-08T00:30:00Z }
-updated: { by: claude, at: 2026-11-07T07:03:56Z }
+updated: { by: claude, at: 2026-11-09T07:07:29Z }
 ---
 
 # 폴더 구조와 설계 배경
@@ -102,10 +102,11 @@ updated: { by: claude, at: 2026-11-07T07:03:56Z }
 
 - `index.md`와 `log.md`를 제외한 모든 마크다운 문서는 맨 위에 `---`로 감싼 프론트매터를 두고, 거기에 `type`을 적습니다 (`Experience`, `Strategy`, `Cover Letter`, `Application` …). 템플릿에 이미 들어 있으니 복사해서 쓰면 됩니다.
   빠진 문서는 `python3 check-repo.py`로 찾을 수 있습니다(읽기 전용, 고치지 않음). `README.md`도 예외입니다.
-- 대시보드가 실제로 읽는 필드는 셋입니다.
-  - `stale_after` — 회사 리서치처럼 시의성 있는 문서의 재조사 신호
-  - `status: draft` — 아직 못 채운 문서. 대시보드가 세어서 보여줍니다
-  - `sources` — 자소서에 쓴 수치의 출처
+- 공통 필드 셋 중 대시보드가 읽는 것은 `me/` 문서의 `status: draft` 하나입니다. 나머지 둘은 사람과 AI가 보는 표시입니다.
+  - `status: draft` — 아직 못 채운 문서. 대시보드가 `me/` 아래 개수를 세어 보여줍니다
+  - `stale_after` — 회사 리서치처럼 시의성 있는 문서의 재조사 신호. 대시보드는 읽지 않습니다
+  - `sources` — 자소서에 쓴 수치의 출처. 대시보드는 읽지 않습니다
+- 지원 건 상태 필드(`stage`, `deadline`, `passed` …)는 `meta.md`에만 있습니다. 목록은 [대시보드](/docs/dashboard.md) 「읽어 가는 파일」에 있습니다.
 
 ## 링크 규칙
 

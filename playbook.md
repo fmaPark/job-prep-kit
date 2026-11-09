@@ -4,7 +4,7 @@ title: 작업 워크플로우
 description: 자기분석부터 회고까지, 각 단계에서 무엇을 어느 파일에 남기는지 정리한 절차서.
 status: draft
 generated: { by: cowork/claude-opus-5, at: 2026-09-07T00:00:00Z }
-updated: { by: claude, at: 2026-11-07T07:03:56Z }
+updated: { by: claude, at: 2026-11-09T07:07:29Z }
 ---
 
 # 0. 원칙
@@ -72,11 +72,19 @@ applications/_template/ → applications/YYYY-MM-회사명-직무/
 |---|---|---|
 | 매주 · 상태가 바뀔 때 | 회사 폴더 `meta.md` 갱신 → `python3 build-dashboard.py` | `/applications/index.md`(자동 블록) · `dashboard.html` |
 | 자소서 초안 후 | 반박 받기 → 수정 | `drafts/` |
-| 면접 후 | 실제 받은 질문 기록 · 상세 복기 | `/library/question-bank.md` · `interview-review.md` |
+| 면접 후 | 실제 받은 질문 기록 · 상세 복기 | `/library/question-bank.md` · `interview-review.md`(`_template/optional/`에서 회사 폴더로 옮겨 씀) |
 | 필기·과제 후 | 틀린 유형 · 막힌 지점 복기 | `/library/assessments/review-log.md` |
 | 결과 확인 후 | 회고 작성 → `me/`로 반영 | `/library/retrospectives/` |
 
 # 5. 자주 쓰는 요청 문장
+
+**`me/` 채우기** — 처음이라면 여기부터.
+
+* "`/me/experiences/_template.md` 형식으로 내 경험 하나를 인터뷰해서 원자 파일로 만들어줘. 한 번에 질문 하나씩 묻고, 내가 말하지 않은 수치나 사실은 `[[확인필요: …]]`로 남겨줘."
+* "`/me/profile.md`의 「지원서 기재 표준」 칸을 채우게 질문해줘. 학교 · 회사 · 기간 표기를 하나로 정하는 게 목적이야."
+* "`/me/target-criteria.md`의 하드 필터와 판단표 가중치를 정하게 질문해줘. 예시 값은 내 답으로 바꿔줘."
+
+**지원 건 작업**
 
 * "이 공고 원문으로 지원 여부를 판단해줘. playbook 2.5 절차대로 하드 필터, 근거 매핑표, 판단표까지 채워서."
 * "`/me/experiences/`를 읽고, 이 JD와 매핑되는 경험을 찾아서 `strategy.md`의 매핑표를 채워줘. 매핑 안 되는 요구사항은 따로 표시해줘."

@@ -3,7 +3,7 @@ type: Guide
 title: 대시보드
 description: build-dashboard.py 실행법, 옵션, 읽어 가는 파일, 링크가 열리는 방식과 문제 해결.
 generated: { by: claude-code/claude-fable-5-1, at: 2026-09-08T00:30:00Z }
-updated: { by: claude, at: 2026-11-07T07:03:56Z }
+updated: { by: claude, at: 2026-11-09T07:07:29Z }
 ---
 
 # 대시보드
@@ -24,6 +24,9 @@ Windows에서는 `py build-dashboard.py` 또는 `python build-dashboard.py`.
 `dashboard.html`을 브라우저로 엽니다. 정적 HTML이라 브라우저가 폴더를 스스로 읽지 못합니다.
 **만든 시점의 스냅샷**이므로 문서를 바꾼 뒤에는 다시 실행해야 합니다.
 `dashboard.html`은 생성물이라 `.gitignore`에 들어 있습니다. 각자 만들어서 씁니다.
+저장소에는 예시 지원 건이 없으므로, 처음 실행하면 "경험 원자 0개, 지원 건 0건"인 빈 화면이 정상입니다. README의 화면은 예시 데이터로 찍은 것입니다.
+
+사용법만 보려면 `python3 build-dashboard.py --help`(또는 `-h`). 이때는 빌드하지 않습니다.
 
 ## 보여주는 것
 
@@ -40,7 +43,7 @@ Windows에서는 `py build-dashboard.py` 또는 `python build-dashboard.py`.
 |---|---|
 | `pipeline` | 진행 중 → 종료 순의 지원 건 표 |
 | `week` | 7일 안의 일정, 그다음 주, 날짜 미정, 날짜가 지났는데 `meta.md`가 그대로인 건 |
-| `skipped` | `stage: 지원안함`인 건과 그 `reason` |
+| `skipped` | `stage: 지원안함`인 건, 결정일(`result_at`), `reason` |
 | `results` | 누적 결과 깔때기 (`passed` · `skip` · `exit_stage`로 계산) |
 
 표시가 없는 블록은 건너뛰고 경고만 냅니다. 블록 안을 손으로 고치면 다음 빌드 때 사라집니다. `_sample` 지원 건은 보드에 넣지 않습니다.
@@ -60,6 +63,7 @@ Windows에서는 `py build-dashboard.py` 또는 `python build-dashboard.py`.
 - `stage`는 `관심 / 서류작성 / 지원완료 / 필기·과제 / 면접 / 결과대기 / 합격 / 불합격 / 지원안함` 중 하나여야 합니다. 예전 이름이나 다른 표기(`코테·과제`, `서류제출`, `최종대기` 등)도 경고 없이 받습니다. 목록에 없는 값은 `관심`으로 표시하고 빌드 시 경고가 납니다. 세부 단계는 `stage_note`에 적으면 단계 옆에 표시됩니다.
 - `passed` · `skip`은 `[서류, 코딩테스트]`처럼 적습니다. 이름에 "서류"가 들어가면 서류, "면접"이 들어가면 면접, 그 밖(코딩테스트 · 인적성 · 과제 · PT …)은 필기·과제로 묶어 셉니다.
 - 빌드할 때 이런 것도 경고합니다: 불합격인데 `exit_stage`가 없음, 지원안함인데 `reason`이 없음, 제출 이후 단계인데 `applied_at`이 없음. 경고는 대시보드 위쪽에도 뜹니다.
+- 지원안함인 건은 `result_at`을 결정일로 보여줍니다. 비워 두면 결정일이 `—`로 나옵니다.
 - `track`은 자유 텍스트입니다. 표시와 검색에만 쓰입니다.
 - `tags`는 한 줄(`tags: [백엔드, 협업]`)과 여러 줄(Obsidian 속성 편집기가 저장하는 형식) 둘 다 읽습니다.
 - 경험 원자 정렬이 의미 있게 동작하려면 `strategy.md` 매핑표에 경험 링크를 걸어야 합니다.
