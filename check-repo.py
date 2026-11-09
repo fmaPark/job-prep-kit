@@ -26,7 +26,7 @@ def markdown_files():
     try:
         out = subprocess.check_output(
             ["git", "ls-files", "--cached", "--others", "--exclude-standard", "-z"],
-            cwd=ROOT)
+            cwd=ROOT, stderr=subprocess.DEVNULL)
         names = [n for n in out.decode("utf-8").split("\0") if n]
         return [ROOT / n for n in sorted(set(names)) if n.endswith(".md")]
     except (OSError, subprocess.CalledProcessError):

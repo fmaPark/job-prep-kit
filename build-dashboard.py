@@ -11,6 +11,7 @@
     --vault NAME   Obsidian 보관함 이름. 기본값은 이 폴더 이름.
     --page-size N  경험 원자 카드 한 페이지 개수 (기본 9)
     --links SCHEME obsidian(기본) | vscode | file
+    -h, --help     이 사용법만 보여 주고 끝낸다. 빌드하지 않는다.
 
 읽는 것
     me/experiences/*.md        경험 원자 (프론트매터 title/description/tags)
@@ -38,6 +39,11 @@ from urllib.parse import quote
 
 BUNDLE = Path(__file__).resolve().parent
 OUT = BUNDLE / "dashboard.html"
+
+# --help / -h: 사용법만 보여 주고 아무것도 쓰지 않는다.
+if __name__ == "__main__" and ({"-h", "--help"} & set(sys.argv[1:])):
+    print(__doc__.strip())
+    sys.exit(0)
 
 
 def _arg(name, default=None):
