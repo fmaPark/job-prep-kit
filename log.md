@@ -2,6 +2,10 @@
 
 번들에 의미 있는 변경이 있을 때 한 줄씩 남긴다. 최신이 위.
 
+## 2026-11-09
+
+* **Docs**: README 온보딩 보강 — 첫 30분 순서(`target-criteria.md` 포함), 지원 건 하나의 흐름표, 스크리닝 먼저, Fork 금지 · 비공개 저장소 안내, 첫 실행 빈 화면 안내, AI 첫 요청 3개. `docs/`에 대시보드가 읽는 필드 정정, 지원안함 결정일(`result_at`), Obsidian 없이 쓰기, 대화 간 이어 가기, 작성 규칙 문서 안내. playbook에 `me/` 채우기 요청 문장. `check-repo.py`는 Git 저장소가 아닐 때 git 오류를 숨기고, `build-dashboard.py`는 `-h`/`--help`에 사용법만 출력.
+
 ## 2026-11-07
 
 * **Library**: 자소서 작성 규칙(`cover-letter-rules.md`)과 포트폴리오 작성 규칙(`portfolio-rules.md`) 신설 — 소재 선택, 골격, 문장 규칙, AI 작성 티 차단, 자체 검증, 연결 검증과 작업 순서, 초안 200% 규칙. 질문 은행에 자소서 문항 유형별 공략법, 회고 색인에 누적 패턴 절. CLAUDE.md·playbook에서 두 규칙 문서를 읽도록 연결.
