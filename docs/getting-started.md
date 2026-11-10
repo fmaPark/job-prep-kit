@@ -3,7 +3,7 @@ type: Guide
 title: 시작 가이드
 description: 내려받기부터 첫 회사 폴더를 만들기까지. 터미널이 낯선 사람 기준으로 쓴 안내.
 generated: { by: claude-code/claude-fable-5-1, at: 2026-09-08T00:30:00Z }
-updated: { by: claude, at: 2026-11-09T07:07:29Z }
+updated: { by: claude, at: 2026-11-10T04:02:49Z }
 ---
 
 # 시작 가이드
@@ -75,6 +75,21 @@ Windows PowerShell에서는 `rm -rf .git` 대신 `Remove-Item -Recurse -Force .g
 ## 4. `me/` 채우기 (한 번 채우고, 계속 갱신)
 
 여기가 이 구조의 심장입니다. 이게 비어 있으면 자소서 작성은 매번 기억을 짜내는 일이 됩니다.
+
+### 샘플 보기와 지우기
+
+처음 받은 폴더에는 가상의 사람 · 회사로 만든 샘플이 들어 있습니다. 경험 원자 4개(`me/experiences/_sample-*.md`)와 지원 건 5건(`applications/_sample-*/`)입니다.
+대시보드를 한 번 만들어 보고, 경험 파일과 `strategy.md` 매핑표가 어떻게 채워지는지 참고하세요.
+
+#### 샘플 지우기
+
+자기 자료를 채우기 시작하면 샘플을 지웁니다. 파일 탐색기에서 이름이 `_sample`로 시작하는 파일 · 폴더를 지우거나, 폴더 안에서 아래를 실행합니다.
+
+```bash
+rm -rf applications/_sample-* me/experiences/_sample-*
+```
+
+Windows PowerShell에서는 `Remove-Item -Recurse -Force applications/_sample-*, me/experiences/_sample-*`. 지운 뒤 대시보드를 다시 만듭니다.
 
 ### 처음 30분
 

@@ -3,7 +3,7 @@ type: Guide
 title: 대시보드
 description: build-dashboard.py 실행법, 옵션, 읽어 가는 파일, 링크가 열리는 방식과 문제 해결.
 generated: { by: claude-code/claude-fable-5-1, at: 2026-09-08T00:30:00Z }
-updated: { by: claude, at: 2026-11-09T07:07:29Z }
+updated: { by: claude, at: 2026-11-10T04:02:49Z }
 ---
 
 # 대시보드
@@ -24,7 +24,8 @@ Windows에서는 `py build-dashboard.py` 또는 `python build-dashboard.py`.
 `dashboard.html`을 브라우저로 엽니다. 정적 HTML이라 브라우저가 폴더를 스스로 읽지 못합니다.
 **만든 시점의 스냅샷**이므로 문서를 바꾼 뒤에는 다시 실행해야 합니다.
 `dashboard.html`은 생성물이라 `.gitignore`에 들어 있습니다. 각자 만들어서 씁니다.
-저장소에는 예시 지원 건이 없으므로, 처음 실행하면 "경험 원자 0개, 지원 건 0건"인 빈 화면이 정상입니다. README의 화면은 예시 데이터로 찍은 것입니다.
+저장소에는 가상의 샘플(`me/experiences/_sample-*.md` 4개, `applications/_sample-*/` 5건)이 들어 있어, 처음 실행해도 지원 현황과 경험 원자 카드가 채워집니다.
+샘플은 "샘플" 표시가 붙고, 결과 깔때기와 `applications/index.md` 보드에는 들어가지 않습니다. 그래서 처음에는 깔때기가 0으로 보입니다. 지우는 법은 [시작 가이드](/docs/getting-started.md) 「샘플 지우기」에 있습니다.
 
 사용법만 보려면 `python3 build-dashboard.py --help`(또는 `-h`). 이때는 빌드하지 않습니다.
 
