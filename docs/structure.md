@@ -3,7 +3,7 @@ type: Guide
 title: 폴더 구조와 설계 배경
 description: 왜 이렇게 나눴는가, 각 폴더와 파일의 역할, 문서 규격(OKF)과 링크 규칙.
 generated: { by: claude-code/claude-fable-5-1, at: 2026-09-08T00:30:00Z }
-updated: { by: claude, at: 2026-11-09T07:07:29Z }
+updated: { by: claude, at: 2026-11-10T02:09:00Z }
 ---
 
 # 폴더 구조와 설계 배경
@@ -46,7 +46,7 @@ updated: { by: claude, at: 2026-11-09T07:07:29Z }
 ├── playbook.md               # 단계별 워크플로우
 ├── build-dashboard.py        # 대시보드 생성기 (+ applications/index.md 보드 갱신)
 ├── check-repo.py             # 프론트매터 type 점검 (읽기 전용)
-├── docs/                     # 이 안내 문서들
+├── docs/                     # 이 안내 문서들 (scope.md: 이 저장소가 하지 않는 것)
 │
 ├── me/                       # ① 사실의 단일 출처
 │   ├── profile.md            # 기본 정보
