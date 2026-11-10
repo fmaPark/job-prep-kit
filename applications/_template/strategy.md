@@ -14,7 +14,7 @@ generated: { by: cowork/claude-opus-5, at: 2026-09-07T00:00:00Z }
 
 | JD 요구사항 | 대응 경험 | 강도 | 근거 |
 |---|---|---|---|
-|  | [[/me/experiences/...]] | 강/중/약 |  |
+|  | [[me/experiences/...]] | 강/중/약 |  |
 
 # 매핑 실패 구간 (= 리스크)
 

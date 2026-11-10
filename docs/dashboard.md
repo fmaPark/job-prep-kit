@@ -2,7 +2,7 @@
 type: Guide
 title: 대시보드
 description: build-dashboard.py 실행법, 옵션, 읽어 가는 파일, 링크가 열리는 방식과 문제 해결.
-generated: { by: claude-code/claude-fable-5-1, at: 2026-09-08T00:30:00Z }
+generated: { by: claude-code/claude-opus-5-5, at: 2026-11-10T00:00:00Z }
 ---
 
 # 대시보드
@@ -26,7 +26,7 @@ Windows에서는 `py build-dashboard.py` 또는 `python build-dashboard.py`.
 
 ## 보여주는 것
 
-- **요약** — 진행 중인 지원, 7일 내 마감, 경험 원자 수, 미완성(`status: draft`) 문서 수
+- **요약** — 진행 중인 지원, 7일 내 마감, 경험 원자 수, 미완성 문서 수. 미완성 문서는 `me/` 안에서 프론트매터에 `status: draft`가 남은 문서입니다. 템플릿 파일에는 처음부터 이 표시가 있어서 받자마자 5 안팎으로 나옵니다. 문서를 다 채우면 `status: draft` 줄을 지우세요
 - **지원 현황** — 회사별 단계 · 마감(D-day) · 다음 할 일. 단계 칩, 마감 프리셋, 회사명 검색으로 거를 수 있습니다
 - **경험 원자** — 지원 건에서 참조된 횟수 순. 태그 필터(OR)와 페이지네이션
 - **바로가기** — 자주 여는 문서
@@ -39,9 +39,13 @@ Windows에서는 `py build-dashboard.py` 또는 `python build-dashboard.py`.
 |---|---|
 | `me/experiences/*.md`의 프론트매터 | 경험 원자 카드 (`title`, `description`, `tags`) |
 | `applications/*/meta.md`의 프론트매터 | 지원 현황 표 (`company`, `role`, `track`, `stage`, `stage_note`, `deadline`, `next_action`) |
-| `applications/*/**.md` 본문 | 경험 원자 참조 횟수. 경험 파일 이름이 등장하면 1회로 셉니다 |
+| `applications/*/**.md` 본문 | 경험 원자 참조 횟수. 경험 파일 이름 전체가 등장하면 1회로 셉니다 |
+| `me/**.md`의 `status` | 미완성 문서 수 |
 
-- `_template`으로 시작하는 파일 · 폴더는 세지 않습니다. `_sample`로 시작하면 "샘플" 표시가 붙습니다.
+이 밖의 필드(`stale_after`, `sources` 등)는 대시보드가 읽지 않습니다.
+
+- `_template`으로 시작하는 파일 · 폴더는 세지 않습니다(`_template copy`, `_template 복사본` 포함). `_sample`로 시작하면 "샘플" 표시가 붙습니다.
+- 경험 파일 이름은 통째로 맞춰 봅니다. `2024-협업`은 `2024-협업갈등`이 등장해도 세지 않습니다.
 - `deadline`은 `YYYY-MM-DD` 형식이어야 D-day가 계산됩니다.
 - `stage`는 `관심 / 서류작성 / 지원완료 / 필기·과제 / 면접 / 결과대기 / 합격 / 불합격` 중 하나여야 필터와 정렬이 동작합니다. 예전 이름 `코테·과제`도 받습니다. 목록에 없는 값은 점선 칩으로 그대로 보이고 빌드 시 경고가 납니다. 세부 단계는 `stage_note`에 적으면 단계 옆에 표시됩니다.
 - `track`은 자유 텍스트입니다. 표시와 검색에만 쓰입니다.
@@ -87,7 +91,13 @@ tags:
 ```
 
 **경험 원자가 전부 "0개 지원 건"이다**
-회사 폴더의 `strategy.md`나 `cover-letter.md`에 경험 파일 이름이 등장하지 않아서입니다. 매핑표에 `[[/me/experiences/파일이름]]`처럼 링크를 거세요.
+회사 폴더의 `strategy.md`나 `cover-letter.md`에 경험 파일 이름이 등장하지 않아서입니다. 매핑표에 `[[me/experiences/파일이름]]`처럼 링크를 거세요.
+
+**`<회사명> — <직무>`라는 지원 건이 보인다**
+템플릿을 복사한 폴더의 `meta.md`를 아직 안 채운 것입니다. `company`, `role`을 채우세요.
+
+**미완성 문서 숫자가 줄지 않는다**
+`me/` 문서 맨 위 프론트매터에 `status: draft`가 남아 있습니다. 다 채운 문서에서는 이 줄을 지우세요.
 
 **단계 칩이 점선에 물음표로 나온다 / 빌드할 때 ⚠ 경고가 뜬다**
 `meta.md`의 `stage` 값이 목록에 없습니다. 위 8개 중 하나로 고치고, 세부 단계는 `stage_note`에 옮기세요.

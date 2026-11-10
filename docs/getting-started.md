@@ -2,7 +2,7 @@
 type: Guide
 title: 시작 가이드
 description: 내려받기부터 첫 회사 폴더를 만들기까지. 터미널이 낯선 사람 기준으로 쓴 안내.
-generated: { by: claude-code/claude-fable-5-1, at: 2026-09-08T00:30:00Z }
+generated: { by: claude-code/claude-opus-5-5, at: 2026-11-10T00:00:00Z }
 ---
 
 # 시작 가이드
@@ -42,6 +42,8 @@ cd 취업준비
 rm -rf .git && git init      # 여기서부터는 내 기록
 ```
 
+Windows PowerShell에서는 셋째 줄 대신 `Remove-Item -Recurse -Force .git; git init`을 씁니다.
+
 > 어느 방법이든, 자기 자료를 넣은 뒤 GitHub에 올릴 거라면 **비공개(private) 저장소**로 만드세요.
 > 이력서 · 자소서 · 회사별 전략이 들어갑니다. `me/assets/` 폴더는 처음부터 `.gitignore`에 걸려 있어 올라가지 않습니다.
 
@@ -57,6 +59,9 @@ rm -rf .git && git init      # 여기서부터는 내 기록
 
 여기가 이 구조의 심장입니다. 이게 비어 있으면 자소서 작성은 매번 기억을 짜내는 일이 됩니다.
 
+시간이 없으면 **2번(경험)과 3번(역량)부터** 채우세요. 나머지는 지원하면서 채워도 됩니다.
+채운 모양이 궁금하면 [작성 예시](/docs/examples/index.md)를 먼저 보세요.
+
 | 순서 | 파일 | 무엇을 쓰나 |
 |---|---|---|
 | 1 | `me/profile.md` | 기본 정보, 학력 · 경력, 현재 상태 |
@@ -68,13 +73,15 @@ rm -rf .git && git init      # 여기서부터는 내 기록
 
 경험 파일 위쪽의 `---`로 감싼 부분(프론트매터)에서 `title`, `description`, `tags`는 대시보드 카드에 그대로 보입니다.
 Obsidian의 속성(Properties) 편집 화면에서 고쳐도 됩니다.
+문서를 다 채웠으면 프론트매터의 `status: draft` 줄을 지우세요. 대시보드의 "미완성 문서" 숫자가 이 표시를 셉니다.
 
 ## 5. 회사 추가하기 (지원 건마다 반복)
 
 1. `applications/_template/` 폴더를 **통째로 복사**합니다.
-2. 이름을 `applications/2026-09-회사명-직무/` 형식으로 바꿉니다.
-3. `meta.md`부터 채웁니다. `company`, `role`, `track`, `stage`, `deadline`(YYYY-MM-DD)이 대시보드 표에 들어갑니다. `track`은 직군을 자유롭게 적고, 2차 면접 같은 세부 단계는 `stage_note`에 적습니다.
-4. 그다음 순서는 폴더 안 `index.md`에 적혀 있습니다. 핵심은 **`strategy.md`의 매핑표를 자소서보다 먼저 채우는 것**입니다.
+2. 이름을 `applications/2026-09-회사명-직무/` 형식으로 바꿉니다. 복사하면 `_template copy`나 `_template 복사본` 같은 이름이 생기는데, 이름을 바꾸기 전까지는 대시보드에 나오지 않습니다.
+3. `meta.md`부터 채웁니다. `company`, `role`, `track`, `stage`, `deadline`(YYYY-MM-DD)이 대시보드 표에 들어갑니다. `track`은 직군을 자유롭게 적고, 2차 면접 같은 세부 단계는 `stage_note`에 적습니다. 지원 상태는 `meta.md`에만 적습니다. `applications/index.md`에 다시 옮겨 적지 않습니다.
+4. `research.md`의 `stale_after`에 재조사할 날짜(보통 복사한 날부터 3개월 뒤)를 적습니다.
+5. 그다음 순서는 폴더 안 `index.md`에 적혀 있습니다. 핵심은 **`strategy.md`의 매핑표를 자소서보다 먼저 채우는 것**입니다.
 
 ## 6. 대시보드 만들기 (문서를 고칠 때마다)
 

@@ -6,4 +6,5 @@
 * [폴더 구조와 설계 배경](/docs/structure.md) - 왜 이렇게 나눴는가, 파일 역할, 문서 규격, 링크 규칙.
 * [대시보드](/docs/dashboard.md) - 실행 옵션, 읽는 파일, 문제 해결.
 * [AI와 함께 쓰기](/docs/ai-guide.md) - `CLAUDE.md`의 역할과 도구별 적용법.
+* [작성 예시](/docs/examples/index.md) - 채워진 경험 파일과 매핑표. 대시보드가 세지 않는 위치에 둔다.
 * `dashboard.png` - README에 쓰는 대시보드 화면.

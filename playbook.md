@@ -35,20 +35,21 @@ generated: { by: cowork/claude-opus-5, at: 2026-09-07T00:00:00Z }
 applications/_template/ → applications/YYYY-MM-회사명-직무/
 ```
 
-1. `jd.md` — 공고 원문을 그대로 붙여넣는다. 요약하지 않는다.
-2. `research.md` — 회사/제품/조직 조사. 시의성 있으므로 `stale_after` 설정.
-3. `strategy.md` — JD 요구사항 ↔ 내 경험 매핑표. **여기가 핵심이다.** 매핑이 안 되는 칸이 곧 리스크이고 면접 질문이다.
-4. `cover-letter.md` — 전략이 선 뒤에 쓴다. 순서를 바꾸면 매번 다시 쓰게 된다.
-5. `interview.md` — 예상 질문과 답변, 꼬리질문.
-6. `assessment.md` — 해당 회사 필기·과제 전형(코딩테스트 · 인적성 · 과제 · PT 등) 형식과 대비 계획.
-7. `log.md` — 지원일, 결과, 일정.
+1. `meta.md` — 회사 · 직무 · 단계 · 마감 · 다음 할 일. 지원 상태는 **이 파일 하나에만** 적는다. 대시보드가 이 파일을 읽는다.
+2. `jd.md` — 공고 원문을 그대로 붙여넣는다. 요약하지 않는다.
+3. `research.md` — 회사/제품/조직 조사. 시의성 있으므로 `stale_after`에 재조사 날짜를 적는다.
+4. `strategy.md` — JD 요구사항 ↔ 내 경험 매핑표. **여기가 핵심이다.** 매핑이 안 되는 칸이 곧 리스크이고 면접 질문이다.
+5. `cover-letter.md` — 전략이 선 뒤에 쓴다. 순서를 바꾸면 매번 다시 쓰게 된다.
+6. `interview.md` — 예상 질문과 답변, 꼬리질문.
+7. `assessment.md` — 해당 회사 필기·과제 전형(코딩테스트 · 인적성 · 과제 · PT 등) 형식과 대비 계획.
+8. `log.md` — 지원일, 결과, 일정.
 
 # 4. 반복 루프
 
 | 시점 | 하는 일 | 남는 곳 |
 |---|---|---|
-| 매주 | 파이프라인 상태 갱신, 마감 확인 | `/applications/index.md` |
-| 자소서 초안 후 | 반박 받기 → 수정 | `drafts/` |
+| 매주 | 파이프라인 상태 갱신, 마감 확인 | 각 회사 폴더의 `meta.md` → 대시보드 재생성 |
+| 자소서 초안 후 | 반박 받기 → 수정 | `cover-letter.md`, 이전 버전은 `drafts/` |
 | 면접 후 | 실제 받은 질문 기록 | `/library/question-bank.md` |
 | 필기·과제 후 | 틀린 유형 · 막힌 지점 복기 | `/library/assessments/review-log.md` |
 | 결과 확인 후 | 회고 작성 → `me/`로 반영 | `/library/retrospectives/` |

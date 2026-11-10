@@ -9,12 +9,12 @@ okf_version: "0.2"
 
 ## 대시보드
 
-* `dashboard.html` - 경험 원자와 지원 현황을 한 화면에. 브라우저로 연다.
+* `dashboard.html` - 경험 원자와 지원 현황을 한 화면에. 브라우저로 연다. 처음 받았을 때는 없고, 아래 명령으로 만든다.
 * `build-dashboard.py` - 대시보드 재생성: `python3 build-dashboard.py`
 
 ## 안내 문서
 
-* [docs/](/docs/index.md) - 시작 가이드, 폴더 구조, 대시보드, AI 활용법. 처음이면 여기부터.
+* [docs/](/docs/index.md) - 시작 가이드, 폴더 구조, 대시보드, AI 활용법, 작성 예시. 처음이면 여기부터.
 
 ## 운영 문서
 

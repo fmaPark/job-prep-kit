@@ -3,10 +3,12 @@ type: Company Research
 title:
 description: 회사·제품·조직·최근 이슈 조사. 시의성이 있으므로 유효기한을 둔다.
 status: draft
-stale_after: 2026-12-07T00:00:00Z
+stale_after:
 generated: { by: cowork/claude-opus-5, at: 2026-09-07T00:00:00Z }
 sources: []
 ---
+
+> `stale_after`: 이 조사를 다시 해야 하는 날짜(YYYY-MM-DD). 보통 복사한 날부터 3개월 뒤.
 
 # 회사
 

@@ -31,5 +31,5 @@ generated: { by: cowork/claude-opus-5, at: 2026-09-07T00:00:00Z }
 
 # 연결
 
-- 역량: [[/me/skills.md]]
-- 서사: [[/me/narrative.md]]
+- 역량: [[me/skills]]
+- 서사: [[me/narrative]]

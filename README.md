@@ -39,9 +39,10 @@
    cd 취업준비
    rm -rf .git && git init      # 여기서부터는 내 기록
    ```
+   Windows PowerShell에서는 셋째 줄 대신 `Remove-Item -Recurse -Force .git; git init`.
 2. **Obsidian에서 열기** — Obsidian을 실행하고 "보관함으로 폴더 열기(Open folder as vault)"에서 압축 푼 폴더를 고릅니다.
-3. **`me/` 채우기** — `me/profile.md` → `me/experiences/`(경험 하나 = 파일 하나) → `me/skills.md` → `me/narrative.md` 순서로 씁니다.
-4. **회사 추가** — `applications/_template/` 폴더를 복사해 `applications/2026-09-회사명-직무/`로 이름을 바꾸고, `meta.md`부터 채웁니다. 직군(`track`)은 자유롭게 적고, 2차 면접 같은 세부 단계는 `stage_note`에 적습니다.
+3. **`me/` 채우기** — 처음에는 `me/experiences/`(경험 하나 = 파일 하나)와 `me/skills.md`가 최우선입니다. 나머지 파일(`profile`, `narrative`, `target-criteria`, `portfolio`)의 순서는 시작 가이드에 있습니다. 채운 모양이 궁금하면 [작성 예시](docs/examples/index.md)를 먼저 보세요.
+4. **회사 추가** — `applications/_template/` 폴더를 복사해 `applications/2026-09-회사명-직무/`로 이름을 바꾸고, `meta.md`부터 채웁니다. 지원 상태는 `meta.md`에만 적습니다. 직군(`track`)은 자유롭게 적고, 2차 면접 같은 세부 단계는 `stage_note`에 적습니다.
 
 단계별 자세한 설명은 [시작 가이드](docs/getting-started.md)에 있습니다.
 
@@ -66,7 +67,8 @@ python3 build-dashboard.py
 
 - **대시보드는 스냅샷입니다.** 문서를 고쳐도 스스로 바뀌지 않습니다. 볼 때마다 다시 만들어야 합니다.
 - **링크는 Obsidian을 가정합니다.** 다른 편집기에서는 대시보드를 `--links` 옵션으로 다시 만들어야 하고, 문서 안의 `[[링크]]`는 그대로 동작하지 않습니다.
-- **경험이 쓰인 횟수는 파일 이름 등장 기준입니다.** 매핑표나 자소서에 경험 파일 링크를 걸지 않으면 0으로 셉니다.
+- **경험이 쓰인 횟수는 파일 이름 등장 기준입니다.** 회사 폴더 문서에 경험 파일 이름 전체가 나와야 1회로 셉니다. 매핑표나 자소서에 경험 파일 링크를 걸지 않으면 0입니다.
+- **대시보드가 읽는 프론트매터는 일부뿐입니다.** `stale_after`(리서치 유효기한)와 `sources`(수치 출처)는 사람과 AI가 보는 표시이고, 대시보드는 경고를 띄우지 않습니다.
 - **지원서를 대신 내주지 않습니다.** AI 규칙도 초안과 반박까지입니다. 제출과 최종 판단은 사람이 합니다.
 
 ## 더 읽기
@@ -75,6 +77,7 @@ python3 build-dashboard.py
 - [폴더 구조와 설계 배경](docs/structure.md) — 왜 이렇게 나눴는가, 각 파일의 역할, 문서 규격
 - [대시보드](docs/dashboard.md) — 실행 옵션, 읽는 파일, 문제 해결
 - [AI와 함께 쓰기](docs/ai-guide.md) — `CLAUDE.md`의 역할과 도구별 적용법
+- [작성 예시](docs/examples/index.md) — 채워진 경험 파일과 매핑표 예시
 - [플레이북](playbook.md) — 단계별 워크플로우와 요청 문장
 
 ## 문의 · 기여

@@ -2,7 +2,7 @@
 type: Guide
 title: AI와 함께 쓰기
 description: CLAUDE.md가 하는 일, 도구별로 적용하는 방법, 자주 쓰는 요청과 [[확인필요]] 표시의 의미.
-generated: { by: claude-code/claude-fable-5-1, at: 2026-09-08T00:30:00Z }
+generated: { by: claude-code/claude-opus-5-5, at: 2026-11-10T00:00:00Z }
 ---
 
 # AI와 함께 쓰기
@@ -25,7 +25,8 @@ generated: { by: claude-code/claude-fable-5-1, at: 2026-09-08T00:30:00Z }
 
 | 도구 | 방법 |
 |---|---|
-| Claude Code, Cursor 등 | 저장소 루트의 `CLAUDE.md`를 자동으로 읽습니다. 따로 할 일 없음 |
+| Claude Code | 저장소 루트의 `CLAUDE.md`를 자동으로 읽습니다. 따로 할 일 없음 |
+| Cursor, Codex 등 다른 코딩 도구 | 도구마다 읽는 규칙 파일이 다릅니다(예: `AGENTS.md`, `.cursor/rules/`). 그 파일에 `CLAUDE.md` 내용을 복사해 두거나, 대화 첫머리에 "CLAUDE.md 읽고 시작해"라고 적습니다 |
 | Claude 웹 · ChatGPT 등 웹 챗 | 프로젝트(Project)의 사용자 지침(custom instructions)에 `CLAUDE.md` 내용을 붙여 넣습니다 |
 | 그 외 | 대화를 시작할 때 "CLAUDE.md 읽고 시작해"라고 한 줄 던지고 파일을 첨부합니다 |
 
