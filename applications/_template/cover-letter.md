@@ -3,7 +3,7 @@ type: Cover Letter
 title:
 description: 제출용 현재본. 이전 버전은 drafts/에 남긴다.
 status: draft
-generated: { by: cowork/claude-opus-5, at: 2026-09-07T00:00:00Z }
+generated: { by: "<human|claude|codex>", at: "<ISO8601>" }
 ---
 
 > 문항형 공고면 문항별로 나눈다. 자유 형식(커버레터 · 영문 레터)이면 섹션 하나로 쓴다. 글자수 칸은 제한이 있을 때만 채운다.

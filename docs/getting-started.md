@@ -3,6 +3,7 @@ type: Guide
 title: 시작 가이드
 description: 내려받기부터 첫 회사 폴더를 만들기까지. 터미널이 낯선 사람 기준으로 쓴 안내.
 generated: { by: claude-code/claude-fable-5-1, at: 2026-09-08T00:30:00Z }
+updated: { by: claude, at: 2026-11-07T07:03:56Z }
 ---
 
 # 시작 가이드
@@ -73,7 +74,7 @@ Obsidian의 속성(Properties) 편집 화면에서 고쳐도 됩니다.
 
 1. `applications/_template/` 폴더를 **통째로 복사**합니다.
 2. 이름을 `applications/2026-09-회사명-직무/` 형식으로 바꿉니다.
-3. `meta.md`부터 채웁니다. `company`, `role`, `track`, `stage`, `deadline`(YYYY-MM-DD)이 대시보드 표에 들어갑니다. `track`은 직군을 자유롭게 적고, 2차 면접 같은 세부 단계는 `stage_note`에 적습니다.
+3. `meta.md`부터 채웁니다. `company`, `role`, `track`, `stage`, `deadline`(YYYY-MM-DD)이 대시보드 표에 들어갑니다. `track`은 직군을 자유롭게 적고, 2차 면접 같은 세부 단계는 `stage_note`에 적습니다. 제출 뒤에는 `applied_at`, `next_event`, `next_event_at`, 결과가 나오면 `passed` · `exit_stage` · `result_at`을 채웁니다. 칸 설명은 `meta.md` 아래 메모에 있습니다.
 4. 그다음 순서는 폴더 안 `index.md`에 적혀 있습니다. 핵심은 **`strategy.md`의 매핑표를 자소서보다 먼저 채우는 것**입니다.
 
 ## 6. 대시보드 만들기 (문서를 고칠 때마다)
@@ -89,7 +90,7 @@ python3 build-dashboard.py
 
 Windows에서는 `python3` 대신 `py build-dashboard.py` 또는 `python build-dashboard.py`.
 
-`dashboard.html`이 생기면 더블클릭해서 브라우저로 엽니다.
+`dashboard.html`이 생기면 더블클릭해서 브라우저로 엽니다. `applications/index.md`의 파이프라인 · 일정 · 결과 표도 함께 갱신됩니다.
 대시보드는 만든 시점의 스냅샷입니다. 문서를 고친 뒤에는 다시 실행하세요.
 옵션과 문제 해결은 [대시보드 문서](/docs/dashboard.md)에 있습니다.
 

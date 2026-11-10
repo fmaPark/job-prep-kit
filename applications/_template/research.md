@@ -3,8 +3,8 @@ type: Company Research
 title:
 description: 회사·제품·조직·최근 이슈 조사. 시의성이 있으므로 유효기한을 둔다.
 status: draft
-stale_after: 2026-12-07T00:00:00Z
-generated: { by: cowork/claude-opus-5, at: 2026-09-07T00:00:00Z }
+stale_after: "<YYYY-MM-DD>"
+generated: { by: "<human|claude|codex>", at: "<ISO8601>" }
 sources: []
 ---
 
