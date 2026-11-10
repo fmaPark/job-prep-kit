@@ -2,7 +2,8 @@
 type: Guide
 title: 폴더 구조와 설계 배경
 description: 왜 이렇게 나눴는가, 각 폴더와 파일의 역할, 문서 규격(OKF)과 링크 규칙.
-generated: { by: claude-code/claude-opus-5-5, at: 2026-11-10T00:00:00Z }
+generated: { by: claude-code/claude-fable-5-1, at: 2026-09-08T00:30:00Z }
+updated: { by: claude, at: 2026-11-10T04:05:14Z }
 ---
 
 # 폴더 구조와 설계 배경
@@ -43,8 +44,9 @@ generated: { by: claude-code/claude-opus-5-5, at: 2026-11-10T00:00:00Z }
 ├── log.md                    # 변경 이력
 ├── CLAUDE.md                 # AI 작업 규칙 — 시스템 인스트럭션
 ├── playbook.md               # 단계별 워크플로우
-├── build-dashboard.py        # 대시보드 생성기
-├── docs/                     # 이 안내 문서들
+├── build-dashboard.py        # 대시보드 생성기 (+ applications/index.md 보드 갱신)
+├── check-repo.py             # 프론트매터 type 점검 (읽기 전용)
+├── docs/                     # 이 안내 문서들 (scope.md: 이 저장소가 하지 않는 것)
 │
 ├── me/                       # ① 사실의 단일 출처
 │   ├── profile.md            # 기본 정보
@@ -56,19 +58,23 @@ generated: { by: claude-code/claude-opus-5-5, at: 2026-11-10T00:00:00Z }
 │   └── assets/               # 이력서·포폴 원본 (.gitignore 처리됨)
 │
 ├── applications/             # ② 지원 현황 — 폴더 하나 = 지원 건 하나
-│   ├── index.md              # 파이프라인 보드
+│   ├── index.md              # 파이프라인 보드 (AUTO 블록은 빌더가 씀)
 │   └── _template/            # 회사 폴더 템플릿 (통째로 복사해서 사용)
 │       ├── meta.md           #   상태 메타데이터 — 대시보드가 읽는 파일
 │       ├── jd.md             #   공고 원문 (요약 금지)
 │       ├── research.md       #   회사·제품·조직 조사
 │       ├── strategy.md       #   공고 ↔ 경험 매핑표  ← 여기가 핵심
 │       ├── cover-letter.md   #   자기소개서 (+ drafts/ 버전 이력)
-│       ├── interview.md      #   예상 질문·꼬리질문
+│       ├── application-form.md # 지원서 칸별 입력값·제출 확정값
+│       ├── interview.md      #   면접 대본·예상 질문·꼬리질문
 │       ├── assessment.md     #   필기·과제(코테·인적성·과제) 대비
-│       └── log.md
+│       ├── log.md
+│       └── optional/         #   필요할 때만: 경력기술서·설명회·면접관별 질문·면접 복기
 │
 └── library/                  # ③ 회사를 가로지르는 자산
-    ├── question-bank.md      # 실제로 받은 면접 질문
+    ├── cover-letter-rules.md # 자소서 작성 규칙
+    ├── portfolio-rules.md    # 포트폴리오 작성 규칙
+    ├── question-bank.md      # 실제로 받은 면접 질문 · 문항 유형별 공략법
     ├── assessments/          # 필기·과제 틀린 유형 누적
     └── retrospectives/       # 지원 회고 → me/로 반영
 ```
@@ -78,16 +84,16 @@ generated: { by: claude-code/claude-opus-5-5, at: 2026-11-10T00:00:00Z }
 | 대상 | 규칙 | 예 |
 |---|---|---|
 | 경험 원자 파일 | `YYYY-키워드.md` | `2024-결제모듈-장애대응.md` |
-| 회사 폴더 | `YYYY-MM-회사명-직무` | `2026-09-토스-백엔드`, `2026-10-오늘의집-마케팅` |
+| 회사 폴더 | `YYYY-MM-회사명-직무` | `2026-09-가나다커머스-백엔드`, `2026-10-예시랩-마케팅` |
 | 이력서 등 원본 | `YYYY-MM-이력서-버전.pdf` | `2026-09-이력서-v3.pdf` |
-| 샘플 데이터 | 이름이 `_sample`로 시작 | 대시보드에 "샘플" 표시가 붙습니다 |
+| 샘플 데이터 | 이름이 `_sample`로 시작 | 대시보드에 "샘플" 표시가 붙고, 결과 깔때기와 보드에서는 빠집니다. 처음 받은 폴더에 들어 있는 샘플은 지우고 씁니다 |
 
-`_template`으로 시작하는 파일과 폴더는 대시보드가 세지 않습니다. Finder나 탐색기에서 복제해 생긴 `_template copy`, `_template 복사본`도 마찬가지이니, 복사한 뒤 이름을 꼭 회사 폴더 규칙대로 바꾸세요.
+`_template`으로 시작하는 파일과 폴더는 대시보드가 세지 않습니다(`_template copy`, `_template 복사본` 같은 복제본 포함).
 
 ## 직군과 전형 종류
 
 템플릿은 특정 직군을 가정하지 않습니다. `meta.md`의 `track`은 자유 텍스트(개발, PM, 디자인, 마케팅, 데이터, 영업, 사무 …)이고, 필기·과제 전형은 코딩테스트 · 인적성 · 과제 · PT · 어학을 모두 같은 자리에서 다룹니다.
-지원 단계는 대시보드가 필터로 쓰기 때문에 6개 큰 범주로 고정되어 있고, 2차 면접이나 인턴 전환처럼 세부 단계는 `stage_note`에 적습니다.
+지원 단계는 대시보드가 필터로 쓰기 때문에 6개 진행 단계와 3개 종료 단계(합격 · 불합격 · 지원안함)로 고정되어 있고, 2차 면접이나 인턴 전환처럼 세부 단계는 `stage_note`에 적습니다.
 
 ## 문서 규격 (OKF 0.2)
 
@@ -95,11 +101,12 @@ generated: { by: claude-code/claude-opus-5-5, at: 2026-11-10T00:00:00Z }
 규격을 몰라도 쓰는 데 지장은 없습니다. 실제로 지켜야 할 것은 아래뿐입니다.
 
 - `index.md`와 `log.md`를 제외한 모든 마크다운 문서는 맨 위에 `---`로 감싼 프론트매터를 두고, 거기에 `type`을 적습니다 (`Experience`, `Strategy`, `Cover Letter`, `Application` …). 템플릿에 이미 들어 있으니 복사해서 쓰면 됩니다.
-- 자주 쓰는 필드와, 각각을 누가 읽는지입니다.
-  - `status: draft` — 아직 못 채운 문서. 대시보드가 `me/` 안의 이 표시를 세어 "미완성 문서"로 보여줍니다. 다 채웠으면 이 줄을 지우세요.
-  - `stale_after` — 회사 리서치처럼 시의성 있는 문서의 재조사 날짜. **대시보드는 읽지 않습니다.** 문서를 열었을 때 사람과 AI가 보는 표시입니다.
-  - `sources` — 자소서에 쓴 수치의 출처. **대시보드는 읽지 않습니다.** AI 검토와 면접 대비용입니다.
-- 대시보드가 읽는 필드 전체 목록은 [대시보드 문서](/docs/dashboard.md)의 "읽어 가는 파일"에 있습니다.
+  빠진 문서는 `python3 check-repo.py`로 찾을 수 있습니다(읽기 전용, 고치지 않음). `README.md`도 예외입니다.
+- 공통 필드 셋 중 대시보드가 읽는 것은 `me/` 문서의 `status: draft` 하나입니다. 나머지 둘은 사람과 AI가 보는 표시입니다.
+  - `status: draft` — 아직 못 채운 문서. 대시보드가 `me/` 아래 개수를 세어 보여줍니다. 다 채웠으면 이 줄을 지웁니다
+  - `stale_after` — 회사 리서치처럼 시의성 있는 문서의 재조사 신호. 대시보드는 읽지 않습니다
+  - `sources` — 자소서에 쓴 수치의 출처. 대시보드는 읽지 않습니다
+- 지원 건 상태 필드(`stage`, `deadline`, `passed` …)는 `meta.md`에만 있습니다. 목록은 [대시보드](/docs/dashboard.md) 「읽어 가는 파일」에 있습니다.
 
 ## 링크 규칙
 
@@ -108,7 +115,7 @@ generated: { by: claude-code/claude-opus-5-5, at: 2026-11-10T00:00:00Z }
 | 방식 | 예 | 어디서 동작하나 |
 |---|---|---|
 | 루트 기준 절대경로 | `[역량](/me/skills.md)` | Obsidian, GitHub 웹. VS Code 미리보기에서는 열리지 않습니다 |
-| 위키링크 | `[[me/experiences/2024-키워드]]` | Obsidian 전용. 다른 편집기에서는 그냥 글자로 보입니다. 맨 앞에 `/`를 붙이지 않습니다 |
+| 위키링크 | `[[/me/experiences/2024-키워드]]` | Obsidian 전용. 다른 편집기에서는 그냥 글자로 보입니다 |
 
 템플릿의 `[[확인필요: …]]` 표시는 링크가 아니라 **"근거를 아직 못 댔다"는 할 일 표시**입니다.
 Obsidian에서는 존재하지 않는 문서로의 링크처럼 보이는데, 그게 의도입니다. 다 지워지면 그 문서는 제출해도 되는 상태입니다.

@@ -2,7 +2,9 @@
 
 한 회사에 종속되지 않고 계속 쌓이는 것들. 지원 건수가 늘수록 여기가 두꺼워져야 한다.
 
-* [질문 은행](/library/question-bank.md) - 실제로 받은 질문과 내 답변의 강약.
+* [자소서 작성 규칙](/library/cover-letter-rules.md) - 소재 선택, 골격, 문장 규칙, 자체 검증, 연결 검증과 작업 순서. 자소서 작업 전에 읽는다.
+* [포트폴리오 작성 규칙](/library/portfolio-rules.md) - 구성, 케이스 스터디 골격, 제외 목록, README, 자체 검증.
+* [질문 은행](/library/question-bank.md) - 실제로 받은 질문과 내 답변의 강약, 자소서 문항 유형별 공략법.
 * [필기·과제 복기](/library/assessments/index.md) - 코딩테스트 · 인적성 · 과제에서 틀린 유형 누적 관리.
 * [지원 회고](/library/retrospectives/index.md) - 결과에서 배운 것을 `me/`로 되돌리는 지점.
 

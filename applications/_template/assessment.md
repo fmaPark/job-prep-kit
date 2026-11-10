@@ -3,7 +3,7 @@ type: Assessment Prep
 title:
 description: 이 회사의 필기·과제 전형(코딩테스트 · 인적성 · 과제 · PT 등) 형식과 대비 계획.
 status: draft
-generated: { by: cowork/claude-opus-5, at: 2026-09-07T00:00:00Z }
+generated: { by: "<human|claude|codex>", at: "<ISO8601>" }
 ---
 
 # 형식

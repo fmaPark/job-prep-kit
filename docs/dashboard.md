@@ -2,12 +2,13 @@
 type: Guide
 title: 대시보드
 description: build-dashboard.py 실행법, 옵션, 읽어 가는 파일, 링크가 열리는 방식과 문제 해결.
-generated: { by: claude-code/claude-opus-5-5, at: 2026-11-10T00:00:00Z }
+generated: { by: claude-code/claude-fable-5-1, at: 2026-09-08T00:30:00Z }
+updated: { by: claude, at: 2026-11-10T04:02:49Z }
 ---
 
 # 대시보드
 
-`build-dashboard.py`는 이 폴더를 훑어 `dashboard.html` 한 파일을 만듭니다.
+`build-dashboard.py`는 이 폴더를 훑어 `dashboard.html` 한 파일을 만들고, `applications/index.md`의 보드도 함께 갱신합니다.
 Python 표준 라이브러리만 쓰므로 설치할 것이 없습니다. **Python 3.8 이상**이면 됩니다.
 
 ## 실행
@@ -23,13 +24,30 @@ Windows에서는 `py build-dashboard.py` 또는 `python build-dashboard.py`.
 `dashboard.html`을 브라우저로 엽니다. 정적 HTML이라 브라우저가 폴더를 스스로 읽지 못합니다.
 **만든 시점의 스냅샷**이므로 문서를 바꾼 뒤에는 다시 실행해야 합니다.
 `dashboard.html`은 생성물이라 `.gitignore`에 들어 있습니다. 각자 만들어서 씁니다.
+저장소에는 가상의 샘플(`me/experiences/_sample-*.md` 4개, `applications/_sample-*/` 5건)이 들어 있어, 처음 실행해도 지원 현황과 경험 원자 카드가 채워집니다.
+샘플은 "샘플" 표시가 붙고, 결과 깔때기와 `applications/index.md` 보드에는 들어가지 않습니다. 그래서 처음에는 깔때기가 0으로 보입니다. 지우는 법은 [시작 가이드](/docs/getting-started.md) 「샘플 지우기」에 있습니다.
+
+사용법만 보려면 `python3 build-dashboard.py --help`(또는 `-h`). 이때는 빌드하지 않습니다.
 
 ## 보여주는 것
 
-- **요약** — 진행 중인 지원, 7일 내 마감, 경험 원자 수, 미완성 문서 수. 미완성 문서는 `me/` 안에서 프론트매터에 `status: draft`가 남은 문서입니다. 템플릿 파일에는 처음부터 이 표시가 있어서 받자마자 5 안팎으로 나옵니다. 문서를 다 채우면 `status: draft` 줄을 지우세요
-- **지원 현황** — 회사별 단계 · 마감(D-day) · 다음 할 일. 단계 칩, 마감 프리셋, 회사명 검색으로 거를 수 있습니다
+- **요약** — 진행 중인 지원, 가장 가까운 일정, 결과 깔때기(지원 → 서류 → 필기·과제 → 면접), 경험 원자 수, 미완성 문서 수. 미완성 문서는 `me/` 안에서 프론트매터에 `status: draft`가 남은 문서입니다. 템플릿에는 처음부터 이 표시가 있으니, 문서를 다 채우면 이 줄을 지우세요
+- **지원 현황** — 회사별 단계 · 다음 일정(D-day) · 다음 할 일. 제출 전에는 서류 마감, 제출 뒤에는 다음 전형 일정을 보여줍니다. 단계 칩, 일정 프리셋, 회사명 검색으로 거를 수 있습니다
 - **경험 원자** — 지원 건에서 참조된 횟수 순. 태그 필터(OR)와 페이지네이션
 - **바로가기** — 자주 여는 문서
+
+### `applications/index.md` 자동 블록
+
+`applications/index.md`에서 `<!-- AUTO:키 -->`와 `<!-- /AUTO:키 -->` 사이만 다시 씁니다. 그 밖의 내용(「지원별 상세 메모」 등)은 건드리지 않습니다.
+
+| 블록 | 내용 |
+|---|---|
+| `pipeline` | 진행 중 → 종료 순의 지원 건 표 |
+| `week` | 7일 안의 일정, 그다음 주, 날짜 미정, 날짜가 지났는데 `meta.md`가 그대로인 건 |
+| `skipped` | `stage: 지원안함`인 건, 결정일(`result_at`), `reason` |
+| `results` | 누적 결과 깔때기 (`passed` · `skip` · `exit_stage`로 계산) |
+
+표시가 없는 블록은 건너뛰고 경고만 냅니다. 블록 안을 손으로 고치면 다음 빌드 때 사라집니다. `_sample` 지원 건은 보드에 넣지 않습니다.
 
 문서 제목을 누르면 원본 마크다운이 열립니다. 어디서 열리는지는 아래 "링크가 열리는 방식"을 보세요.
 
@@ -38,18 +56,18 @@ Windows에서는 `py build-dashboard.py` 또는 `python build-dashboard.py`.
 | 읽는 파일 | 쓰이는 곳 |
 |---|---|
 | `me/experiences/*.md`의 프론트매터 | 경험 원자 카드 (`title`, `description`, `tags`) |
-| `applications/*/meta.md`의 프론트매터 | 지원 현황 표 (`company`, `role`, `track`, `stage`, `stage_note`, `deadline`, `next_action`) |
+| `applications/*/meta.md`의 프론트매터 | 지원 현황 표와 보드 (`company`, `role`, `track`, `stage`, `stage_note`, `priority`, `deadline`, `applied_at`, `next_event`, `next_event_at`, `next_action`, `passed`, `skip`, `exit_stage`, `result_at`, `reason`). 칸 설명은 `applications/_template/meta.md` |
 | `applications/*/**.md` 본문 | 경험 원자 참조 횟수. 경험 파일 이름 전체가 등장하면 1회로 셉니다 |
-| `me/**.md`의 `status` | 미완성 문서 수 |
 
-이 밖의 필드(`stale_after`, `sources` 등)는 대시보드가 읽지 않습니다.
-
-- `_template`으로 시작하는 파일 · 폴더는 세지 않습니다(`_template copy`, `_template 복사본` 포함). `_sample`로 시작하면 "샘플" 표시가 붙습니다.
-- 경험 파일 이름은 통째로 맞춰 봅니다. `2024-협업`은 `2024-협업갈등`이 등장해도 세지 않습니다.
-- `deadline`은 `YYYY-MM-DD` 형식이어야 D-day가 계산됩니다.
-- `stage`는 `관심 / 서류작성 / 지원완료 / 필기·과제 / 면접 / 결과대기 / 합격 / 불합격` 중 하나여야 필터와 정렬이 동작합니다. 예전 이름 `코테·과제`도 받습니다. 목록에 없는 값은 점선 칩으로 그대로 보이고 빌드 시 경고가 납니다. 세부 단계는 `stage_note`에 적으면 단계 옆에 표시됩니다.
+- `_template`으로 시작하는 파일 · 폴더는 세지 않습니다. 복제해서 생긴 `_template copy`, `_template 복사본`도 마찬가지이니, 복사한 뒤 이름을 회사 폴더 규칙대로 바꾸세요. `_sample`로 시작하면 "샘플" 표시가 붙습니다.
+- 날짜 칸은 `YYYY-MM-DD` 또는 `YYYY-MM-DD HH:MM` 형식이어야 D-day가 계산됩니다. 읽지 못하면 경고가 납니다.
+- `stage`는 `관심 / 서류작성 / 지원완료 / 필기·과제 / 면접 / 결과대기 / 합격 / 불합격 / 지원안함` 중 하나여야 합니다. 예전 이름이나 다른 표기(`코테·과제`, `서류제출`, `최종대기` 등)도 경고 없이 받습니다. 목록에 없는 값은 `관심`으로 표시하고 빌드 시 경고가 납니다. 세부 단계는 `stage_note`에 적으면 단계 옆에 표시됩니다.
+- `passed` · `skip`은 `[서류, 코딩테스트]`처럼 적습니다. 이름에 "서류"가 들어가면 서류, "면접"이 들어가면 면접, 그 밖(코딩테스트 · 인적성 · 과제 · PT …)은 필기·과제로 묶어 셉니다.
+- 빌드할 때 이런 것도 경고합니다: 불합격인데 `exit_stage`가 없음, 지원안함인데 `reason`이 없음, 제출 이후 단계인데 `applied_at`이 없음. 경고는 대시보드 위쪽에도 뜹니다.
+- 지원안함인 건은 `result_at`을 결정일로 보여줍니다. 비워 두면 결정일이 `—`로 나옵니다.
 - `track`은 자유 텍스트입니다. 표시와 검색에만 쓰입니다.
 - `tags`는 한 줄(`tags: [백엔드, 협업]`)과 여러 줄(Obsidian 속성 편집기가 저장하는 형식) 둘 다 읽습니다.
+- 경험 파일 이름은 통째로 맞춰 봅니다. `2024-협업`은 `2024-협업갈등`이 등장해도 세지 않습니다.
 - 경험 원자 정렬이 의미 있게 동작하려면 `strategy.md` 매핑표에 경험 링크를 걸어야 합니다.
 
 ## 옵션
@@ -91,19 +109,16 @@ tags:
 ```
 
 **경험 원자가 전부 "0개 지원 건"이다**
-회사 폴더의 `strategy.md`나 `cover-letter.md`에 경험 파일 이름이 등장하지 않아서입니다. 매핑표에 `[[me/experiences/파일이름]]`처럼 링크를 거세요.
+회사 폴더의 `strategy.md`나 `cover-letter.md`에 경험 파일 이름이 등장하지 않아서입니다. 매핑표에 `[[/me/experiences/파일이름]]`처럼 링크를 거세요.
 
-**`<회사명> — <직무>`라는 지원 건이 보인다**
-템플릿을 복사한 폴더의 `meta.md`를 아직 안 채운 것입니다. `company`, `role`을 채우세요.
+**빌드할 때 ⚠ 경고가 뜬다**
+경고 문장이 고칠 칸을 알려줍니다. 단계 이름이 목록에 없으면 위 9개 중 하나로 고치고, 세부 단계는 `stage_note`에 옮기세요.
 
-**미완성 문서 숫자가 줄지 않는다**
-`me/` 문서 맨 위 프론트매터에 `status: draft`가 남아 있습니다. 다 채운 문서에서는 이 줄을 지우세요.
+**마감이나 일정이 D-day로 안 나온다**
+날짜 칸이 `YYYY-MM-DD` 형식인지 확인하세요. 제출 뒤에는 `deadline`이 아니라 `next_event_at`이 보입니다.
 
-**단계 칩이 점선에 물음표로 나온다 / 빌드할 때 ⚠ 경고가 뜬다**
-`meta.md`의 `stage` 값이 목록에 없습니다. 위 8개 중 하나로 고치고, 세부 단계는 `stage_note`에 옮기세요.
-
-**마감이 D-day로 안 나온다**
-`meta.md`의 `deadline`이 `YYYY-MM-DD` 형식인지 확인하세요.
+**`applications/index.md`가 바뀌지 않는다**
+`<!-- AUTO:pipeline -->` 같은 표시가 지워졌을 수 있습니다. 템플릿 저장소의 `applications/index.md`에서 표시 줄을 다시 가져오세요.
 
 **`python3: command not found` / `'py'은(는) 내부 또는 외부 명령이 아닙니다`**
 Python이 없거나 PATH에 없습니다. [시작 가이드](/docs/getting-started.md)의 "Python 확인"을 보세요.
