@@ -31,7 +31,7 @@ Windows에서는 `py build-dashboard.py` 또는 `python build-dashboard.py`.
 
 ## 보여주는 것
 
-- **요약** — 진행 중인 지원, 가장 가까운 일정, 결과 깔때기(지원 → 서류 → 필기·과제 → 면접), 경험 원자 수, 미완성(`status: draft`) 문서 수
+- **요약** — 진행 중인 지원, 가장 가까운 일정, 결과 깔때기(지원 → 서류 → 필기·과제 → 면접), 경험 원자 수, 미완성 문서 수. 미완성 문서는 `me/` 안에서 프론트매터에 `status: draft`가 남은 문서입니다. 템플릿에는 처음부터 이 표시가 있으니, 문서를 다 채우면 이 줄을 지우세요
 - **지원 현황** — 회사별 단계 · 다음 일정(D-day) · 다음 할 일. 제출 전에는 서류 마감, 제출 뒤에는 다음 전형 일정을 보여줍니다. 단계 칩, 일정 프리셋, 회사명 검색으로 거를 수 있습니다
 - **경험 원자** — 지원 건에서 참조된 횟수 순. 태그 필터(OR)와 페이지네이션
 - **바로가기** — 자주 여는 문서
@@ -57,9 +57,9 @@ Windows에서는 `py build-dashboard.py` 또는 `python build-dashboard.py`.
 |---|---|
 | `me/experiences/*.md`의 프론트매터 | 경험 원자 카드 (`title`, `description`, `tags`) |
 | `applications/*/meta.md`의 프론트매터 | 지원 현황 표와 보드 (`company`, `role`, `track`, `stage`, `stage_note`, `priority`, `deadline`, `applied_at`, `next_event`, `next_event_at`, `next_action`, `passed`, `skip`, `exit_stage`, `result_at`, `reason`). 칸 설명은 `applications/_template/meta.md` |
-| `applications/*/**.md` 본문 | 경험 원자 참조 횟수. 경험 파일 이름이 등장하면 1회로 셉니다 |
+| `applications/*/**.md` 본문 | 경험 원자 참조 횟수. 경험 파일 이름 전체가 등장하면 1회로 셉니다 |
 
-- `_template`으로 시작하는 파일 · 폴더는 세지 않습니다. `_sample`로 시작하면 "샘플" 표시가 붙습니다.
+- `_template`으로 시작하는 파일 · 폴더는 세지 않습니다. 복제해서 생긴 `_template copy`, `_template 복사본`도 마찬가지이니, 복사한 뒤 이름을 회사 폴더 규칙대로 바꾸세요. `_sample`로 시작하면 "샘플" 표시가 붙습니다.
 - 날짜 칸은 `YYYY-MM-DD` 또는 `YYYY-MM-DD HH:MM` 형식이어야 D-day가 계산됩니다. 읽지 못하면 경고가 납니다.
 - `stage`는 `관심 / 서류작성 / 지원완료 / 필기·과제 / 면접 / 결과대기 / 합격 / 불합격 / 지원안함` 중 하나여야 합니다. 예전 이름이나 다른 표기(`코테·과제`, `서류제출`, `최종대기` 등)도 경고 없이 받습니다. 목록에 없는 값은 `관심`으로 표시하고 빌드 시 경고가 납니다. 세부 단계는 `stage_note`에 적으면 단계 옆에 표시됩니다.
 - `passed` · `skip`은 `[서류, 코딩테스트]`처럼 적습니다. 이름에 "서류"가 들어가면 서류, "면접"이 들어가면 면접, 그 밖(코딩테스트 · 인적성 · 과제 · PT …)은 필기·과제로 묶어 셉니다.
@@ -67,6 +67,7 @@ Windows에서는 `py build-dashboard.py` 또는 `python build-dashboard.py`.
 - 지원안함인 건은 `result_at`을 결정일로 보여줍니다. 비워 두면 결정일이 `—`로 나옵니다.
 - `track`은 자유 텍스트입니다. 표시와 검색에만 쓰입니다.
 - `tags`는 한 줄(`tags: [백엔드, 협업]`)과 여러 줄(Obsidian 속성 편집기가 저장하는 형식) 둘 다 읽습니다.
+- 경험 파일 이름은 통째로 맞춰 봅니다. `2024-협업`은 `2024-협업갈등`이 등장해도 세지 않습니다.
 - 경험 원자 정렬이 의미 있게 동작하려면 `strategy.md` 매핑표에 경험 링크를 걸어야 합니다.
 
 ## 옵션

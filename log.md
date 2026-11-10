@@ -4,6 +4,7 @@
 
 ## 2026-11-10
 
+* **Dashboard**: `_template copy` · `_template 복사본` 같은 템플릿 복제본을 지원 건 · 경험에서 제외(문서 설명과 일치). 경험 참조는 파일 이름 전체가 맞을 때만 센다(`2024-협업`이 `2024-협업갈등`에 걸리지 않음). `docs/dashboard.md` · `docs/structure.md`에 반영하고, 다 채운 문서에서 `status: draft`를 지우라는 안내와 `dashboard.html`이 처음엔 없다는 안내 추가.
 * **Generality**: 회사 폴더 이름 예시의 실제 회사명을 가상 이름으로 교체(`docs/structure.md`, `applications/index.md`).
 * **Samples**: 첫 실행 화면이 비지 않도록 가상의 샘플 추가 — 경험 원자 4개(`me/experiences/_sample-*.md`, 운영 · 데이터 · 학업 · 활동)와 지원 건 5건(`applications/_sample-*/`, 운영 · 데이터 · 기획 · 마케팅 · 사무 트랙, 서류작성 · 필기·과제 · 면접 · 불합격 · 지원안함). README · docs의 빈 화면 안내를 샘플 안내와 지우는 법으로 교체.
 * **Docs**: `docs/scope.md`(이 저장소가 하지 않는 것) 신설 — 12개 항목의 경계와 사용자가 할 일 · 확장 지점. README에 4줄 요약 절과 링크, `docs/index.md` · `docs/structure.md`에 연결. README 「한계」에서 제출 관련 줄은 새 절로 옮김.
