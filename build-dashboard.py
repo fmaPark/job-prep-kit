@@ -143,13 +143,23 @@ def norm(s):
 
 # ── 수집 ────────────────────────────────────────────────────────────────
 
+def is_template(name):
+    """_template, "_template copy", "_template 복사본"처럼 템플릿 사본도 세지 않는다."""
+    return norm(name).startswith("_template")
+
+
+def stem_pattern(stem):
+    """파일 이름 전체가 등장할 때만 맞춘다. "2024-협업"이 "2024-협업갈등"에 걸리지 않게."""
+    return re.compile(r"(?<![\w-])" + re.escape(stem) + r"(?![\w-])")
+
+
 def collect_experiences():
     d = BUNDLE / "me" / "experiences"
     if not d.is_dir():
         return []
     items = []
     for p in sorted(d.glob("*.md")):
-        if p.name in ("index.md", "log.md", "_template.md"):
+        if p.name in ("index.md", "log.md") or is_template(p.name):
             continue
         meta, _ = parse_frontmatter(p)
         tags = meta.get("tags", [])
@@ -171,7 +181,7 @@ def collect_applications():
     if not d.is_dir():
         return []
     apps = []
-    for folder in sorted(x for x in d.iterdir() if x.is_dir() and x.name != "_template"):
+    for folder in sorted(x for x in d.iterdir() if x.is_dir() and not is_template(x.name)):
         meta, _ = parse_frontmatter(folder / "meta.md")
         if not meta:
             continue
@@ -235,7 +245,7 @@ def count_usage(experiences, apps):
             except (OSError, UnicodeDecodeError):
                 pass
         for exp in experiences:
-            if exp["stem"] and exp["stem"] in blob:
+            if exp["stem"] and stem_pattern(exp["stem"]).search(blob):
                 exp["uses"] += 1
     experiences.sort(key=lambda e: (-e["uses"], -e["mtime"]))
 
@@ -1006,7 +1016,7 @@ def build():
     closed = [a for a in apps if a["stage"] in TERMINAL]
     me_dir = BUNDLE / "me"
     drafts = sum(1 for p in me_dir.rglob("*.md")
-                 if p.name not in ("index.md", "log.md", "_template.md")
+                 if p.name not in ("index.md", "log.md") and not is_template(p.name)
                  and parse_frontmatter(p)[0].get("status") == "draft") if me_dir.is_dir() else 0
     now = datetime.now().strftime("%Y-%m-%d %H:%M")
 
